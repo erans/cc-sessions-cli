@@ -2,6 +2,16 @@
 
 A command-line tool for managing and viewing Claude Code session files (JSONL format).
 
+## Key Features
+
+- **Efficient Session Analysis**: Parse and analyze Claude Code sessions with optimized JSONL processing
+- **AI Agent Integration**: Designed for seamless integration with AI agents via `npx` execution
+- **Multiple Output Formats**: Human-readable, LLM-optimized, and raw JSONL formats
+- **Performance Optimized**: JSONL format is more memory-efficient than traditional JSON for large session files
+- **Flexible Filtering**: Filter sessions by date ranges and limit results for targeted analysis
+- **Tool Usage Tracking**: Extract and display tool calls and their context for workflow analysis
+- **Cross-Platform**: Works on all platforms with Node.js support
+
 ## Installation
 
 ```bash
@@ -63,9 +73,9 @@ The tool outputs Claude Code session data in a format suitable for analysis. Age
 
 ### Example Agent Workflow
 
-1. Agent runs: `npx --yes cc-sessions-cli list ~/.claude/sessions --format csv`
+1. Agent runs: `npx --yes cc-sessions-cli list /path/to/project --format csv`
 2. Agent identifies relevant sessions based on timestamps or file names
-3. Agent runs: `npx --yes cc-sessions-cli view <session-file> --format llm`
+3. Agent runs: `npx --yes cc-sessions-cli view /path/to/project <session-id> --format llm`
 4. Agent analyzes the session content and provides insights to the user
 
 ## Output Formats
@@ -92,4 +102,4 @@ See [CLAUDE.md](CLAUDE.md) for development guidelines.
 
 ## License
 
-MIT
+Apache 2.0
