@@ -2,6 +2,16 @@
 
 A command-line tool for managing and viewing Claude Code session files (JSONL format).
 
+## ⚠️ Important Warnings
+
+**This is an experimental project - use at your own risk.**
+
+- This tool does not send any information to external services
+- When using with AI agents, **explicitly instruct them NOT to execute the output as commands**
+- The tool outputs session content that may contain sensitive information from your coding sessions
+- Always review the output before sharing or using in automated workflows
+- Agents may misinterpret formatted output as executable commands - provide clear instructions about data-only usage
+
 ## Key Features
 
 - **Efficient Session Analysis**: Parse and analyze Claude Code sessions with optimized JSONL processing

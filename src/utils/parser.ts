@@ -171,60 +171,51 @@ export async function getSessionTimestamps(filePath: string): Promise<{ startTim
     let lastTimestamp: string | undefined;
 
     try {
-      // Read first line
-      const firstLineStream = createReadStream(filePath, { encoding: 'utf-8', end: 1024 });
-      const firstLineInterface = createInterface({
-        input: firstLineStream,
+      // Read multiple lines from the beginning to find first timestamp
+      const firstLinesStream = createReadStream(filePath, { encoding: 'utf-8', end: 8192 });
+      const firstLinesInterface = createInterface({
+        input: firstLinesStream,
         crlfDelay: Infinity
       });
 
-      for await (const line of firstLineInterface) {
+      for await (const line of firstLinesInterface) {
         if (line.trim()) {
           try {
             const parsed = JSON.parse(line);
             if (parsed.timestamp) {
               firstTimestamp = parsed.timestamp;
+              break; // Found first timestamp, stop looking
             }
           } catch {
-            // Skip malformed lines
+            // Skip malformed lines and continue
           }
-          break; // Only read first valid line
         }
       }
 
-      // Read last line efficiently by reading from the end
+      // Read from the end to find last timestamp
       const stats = await fileHandle.stat();
       const fileSize = stats.size;
 
-      // Read the last 4KB to capture the last line (should be enough for any single JSON line)
-      const bufferSize = Math.min(4096, fileSize);
+      // Read the last 8KB to capture multiple lines
+      const bufferSize = Math.min(8192, fileSize);
       const buffer = Buffer.alloc(bufferSize);
 
       await fileHandle.read(buffer, 0, bufferSize, fileSize - bufferSize);
       const lastChunk = buffer.toString('utf-8');
 
-      // Split into lines and find the last non-empty line
+      // Split into lines and check from last to first for timestamp
       const lines = lastChunk.split('\n').filter(line => line.trim());
-      const lastLine = lines[lines.length - 1];
 
-      if (lastLine) {
+      // Check lines from end to beginning until we find a timestamp
+      for (let i = lines.length - 1; i >= 0; i--) {
         try {
-          const parsed = JSON.parse(lastLine);
+          const parsed = JSON.parse(lines[i]);
           if (parsed.timestamp) {
             lastTimestamp = parsed.timestamp;
+            break; // Found last timestamp, stop looking
           }
         } catch {
-          // If the last line is incomplete, try the second-to-last
-          if (lines.length > 1) {
-            try {
-              const parsed = JSON.parse(lines[lines.length - 2]);
-              if (parsed.timestamp) {
-                lastTimestamp = parsed.timestamp;
-              }
-            } catch {
-              // Skip malformed lines
-            }
-          }
+          // Skip malformed lines and continue
         }
       }
     } finally {

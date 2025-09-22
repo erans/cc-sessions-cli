@@ -1,6 +1,6 @@
 {
   "name": "cc-sessions-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A CLI tool to manage and view Claude Code sessions",
   "type": "module",
   "main": "dist/index.js",
