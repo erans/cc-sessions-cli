@@ -88,15 +88,47 @@ The tool outputs Claude Code session data in a format suitable for analysis. Age
 3. Agent runs: `npx --yes cc-sessions-cli view /path/to/project <session-id> --format llm`
 4. Agent analyzes the session content and provides insights to the user
 
-### Session Analyzer Sub-Agent
+### Example Sub-Agents
 
-For a complete example of how to create a Claude Code sub-agent that analyzes your past sessions and provides prompting improvement suggestions, see [examples/session-analyzer-agent.md](examples/session-analyzer-agent.md). This agent can help you:
+This project includes **2 example Claude Code sub-agents** that demonstrate how to use `cc-sessions-cli` for powerful session analysis:
 
-- Identify successful prompting patterns in your past sessions
-- Suggest specific improvements to your communication style
-- Analyze tool usage efficiency
-- Generate personalized prompting templates
-- Track your improvement over time
+#### 1. Session Analyzer Agent
+**Purpose**: Improve your prompting skills by analyzing conversation patterns
+**Use cases**: "How can I communicate better with Claude?" | "What prompting patterns work best?"
+
+- Analyzes your communication style and prompting effectiveness
+- Identifies successful patterns to replicate and areas for improvement
+- Generates personalized prompting templates based on your successful interactions
+- Tracks your improvement over time across sessions
+
+#### 2. Session Query Agent
+**Purpose**: Search and retrieve information from your session history
+**Use cases**: "When did we work on authentication?" | "What errors have we encountered?"
+
+- Finds specific conversations, topics, or decisions from past sessions
+- Searches by date ranges, keywords, tools used, or technologies discussed
+- Extracts project timeline and development progression
+- Answers questions about past work and technical decisions
+
+#### Installation
+
+1. **Copy agent files** to your project's `.claude/agents/` directory:
+   ```bash
+   mkdir -p .claude/agents
+   # Copy the agent configuration from examples/ to .claude/agents/
+   ```
+
+2. **Use the agents** in Claude Code:
+   ```
+   /agents session-analyzer   # Analyze your prompting patterns
+   /agents session-query      # Search your session history
+   ```
+
+3. **Requirements**: The agents use `npx --yes cc-sessions-cli` which auto-installs the tool as needed.
+
+See the full configuration details in:
+- [examples/session-analyzer-agent.md](examples/session-analyzer-agent.md)
+- [examples/session-query-agent.md](examples/session-query-agent.md)
 
 ## Output Formats
 
