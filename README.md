@@ -92,7 +92,7 @@ The tool outputs Claude Code session data in a format suitable for analysis. Age
 
 This project includes **2 example Claude Code sub-agents** that demonstrate how to use `cc-sessions-cli` for powerful session analysis:
 
-#### 1. Session Analyzer Agent
+#### 1. Prompt Coach Agent
 **Purpose**: Improve your prompting skills by analyzing conversation patterns
 **Use cases**: "How can I communicate better with Claude?" | "What prompting patterns work best?"
 
@@ -122,7 +122,7 @@ This project includes **2 example Claude Code sub-agents** that demonstrate how 
 
 2. **Use the agents** in Claude Code:
    ```
-   /agents session-analyzer   # Analyze your prompting patterns
+   /agents prompt-coach       # Analyze your prompting patterns
    /agents session-query      # Search your session history
    ```
 
@@ -131,7 +131,7 @@ This project includes **2 example Claude Code sub-agents** that demonstrate how 
 **⚠️ Security Note**: Always review agent configurations before copying them to your project. Understand what commands they execute and ensure they come from trusted sources. These agents only use `npx --yes cc-sessions-cli` with read-only operations on your local session files.
 
 See the full configuration details in:
-- [examples/session-analyzer-agent.md](examples/session-analyzer-agent.md)
+- [examples/prompt-coach-agent.md](examples/prompt-coach-agent.md)
 - [examples/session-query-agent.md](examples/session-query-agent.md)
 
 ## Output Formats
