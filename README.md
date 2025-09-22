@@ -112,10 +112,12 @@ This project includes **2 example Claude Code sub-agents** that demonstrate how 
 
 #### Installation
 
-1. **Copy agent files** to your project's `.claude/agents/` directory:
+**Simple Setup**: These agents can be directly copied to any project since they use `npx` to auto-install `cc-sessions-cli` on demand.
+
+1. **Copy agent configurations** to your project's `.claude/agents/` directory:
    ```bash
    mkdir -p .claude/agents
-   # Copy the agent configuration from examples/ to .claude/agents/
+   # Copy the YAML frontmatter + content from the example files
    ```
 
 2. **Use the agents** in Claude Code:
@@ -124,7 +126,9 @@ This project includes **2 example Claude Code sub-agents** that demonstrate how 
    /agents session-query      # Search your session history
    ```
 
-3. **Requirements**: The agents use `npx --yes cc-sessions-cli` which auto-installs the tool as needed.
+3. **No installation required**: The agents use `npx --yes cc-sessions-cli` which automatically downloads and runs the tool when needed.
+
+**⚠️ Security Note**: Always review agent configurations before copying them to your project. Understand what commands they execute and ensure they come from trusted sources. These agents only use `npx --yes cc-sessions-cli` with read-only operations on your local session files.
 
 See the full configuration details in:
 - [examples/session-analyzer-agent.md](examples/session-analyzer-agent.md)
