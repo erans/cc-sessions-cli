@@ -88,6 +88,16 @@ The tool outputs Claude Code session data in a format suitable for analysis. Age
 3. Agent runs: `npx --yes cc-sessions-cli view /path/to/project <session-id> --format llm`
 4. Agent analyzes the session content and provides insights to the user
 
+### Session Analyzer Sub-Agent
+
+For a complete example of how to create a Claude Code sub-agent that analyzes your past sessions and provides prompting improvement suggestions, see [examples/session-analyzer-agent.md](examples/session-analyzer-agent.md). This agent can help you:
+
+- Identify successful prompting patterns in your past sessions
+- Suggest specific improvements to your communication style
+- Analyze tool usage efficiency
+- Generate personalized prompting templates
+- Track your improvement over time
+
 ## Output Formats
 
 ### Human Format
